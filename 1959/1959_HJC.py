@@ -1,26 +1,22 @@
+import sys
+sys.stdin = open('input.txt', 'r')
+#-----------------------------#
 T = int(input())
+for tc in range(1, T + 1):
+    a, b = map(int, input().split())
+    Aarr = list(map(int, input().split()))
+    Barr = list(map(int, input().split()))
 
-for test_case in range(1,   T + 1):
-    N, M = map(int, input().split())
-    A = list(map(int, input().split(' ')))
-    B = list(map(int, input().split(' ')))
-    Max = Sum = 0
+    if a > b:   # a 사이즈가 더 크면 a와 b 바꿈
+        a, b = b, a
+        Aarr, Barr = Barr, Aarr
 
-    if N > M:                   # A가 더 클때
-        for i in range(0, N - M + 1):
-            Sum = 0
-            for j in range(0, M):
-                Sum = Sum + (A[i + j] * B[j])
-            if Max < Sum:
-                Max = Sum
+    ans = 0
+    for i in range(b - a + 1):  # b 안에서 a가 돌 수 있는 만큼 반복
+        _sum = 0
+        for j in range(a):  # a 사이즈 만큼 반복
+            # _sum에 각 인덱스 값 곱해서 더함
+            _sum += Aarr[j] * Barr[i+j]
+        ans = max(ans, _sum)    # 최댓값 비교
 
-    else:                       # B가 더 클때
-        for i in range(0, M - N + 1):
-            Sum = 0
-            for j in range(0, N):
-                Sum = Sum + (A[j] * B[i + j])
-            if Max < Sum:
-                Max = Sum
-
-    print("#", test_case, sep='', end='')
-    print("",Max)
+    print(f'#{tc} {ans}')

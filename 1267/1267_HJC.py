@@ -12,4 +12,4 @@ for tc in range(1, T + 1):
         data.append([arr[i], arr[i+1]])
     print(data)
     for i in range(len(data)):
-        if
+        pass
