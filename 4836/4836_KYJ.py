@@ -13,7 +13,13 @@ def color(N, square):
                 if board[x][y] == 0 or board[x][y] == c1:
                     board[x][y] = c1
                 else:
-                    cnt += 1
+                    board[x][y] = 3
+
+
+    for x in range(10):
+        for y in range(10):
+            if board[x][y] == 3:
+                cnt += 1
 
     return cnt
 
